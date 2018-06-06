@@ -253,11 +253,11 @@ def _read_and_batch_from_files(
 
 
 def _generate_synthetic_data(params):
-  batch = length = int(math.sqrt(params["batch_size"]))
+  batch = length = 55  # int(math.sqrt(params["batch_size"]))
   dataset = tf.data.Dataset.from_tensors(tf.ones([batch, length], tf.int64))
   dataset = dataset.map(lambda x: (x, x))
   dataset = dataset.cache()
-  dataset = dataset.repeat(1000)
+  dataset = dataset.repeat(2000)
   dataset = dataset.prefetch(buffer_size=tf.contrib.data.AUTOTUNE)
   return dataset
 
